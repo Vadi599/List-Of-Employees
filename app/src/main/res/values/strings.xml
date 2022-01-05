@@ -1,0 +1,29 @@
+<resources>
+    <string name="app_name">ListOfEmployees</string>
+    <string name="name">Имя:</string>
+    <string name="salary">Зарплата:</string>
+    <string name="age">Возраст:</string>
+    <string name="detailed_info">Detailed info about user</string>
+    <string name="add_to_company">Добавить в компанию</string>
+    <string name="delete_from_company">Удалить из нашей компании</string>
+    <string name="attention">Внимание!</string>
+    <string name="are_you_sure_you_want_delete_user_from_our_company">Вы уверены что хотите удалить пользователя из Вашей компании ?</string>
+    <string name="cancel">Отмена</string>
+    <string name="delete">Удалить</string>
+    <string name="ok">OK</string>
+    <string name="show_company">Показать компанию</string>
+    <string name="enter_the_new_name">введите новое имя</string>
+    <string name="employee_name">Имя:</string>
+    <string name="employee_salary">Зарплата:</string>
+    <string name="enter_the_new_salary">Введите новую зарплату</string>
+    <string name="employee_age">Возраст:</string>
+    <string name="enter_the_new_age">Введите новый возраст</string>
+    <string name="edit_employee">Редактирование работника</string>
+    <string name="create_order_title">Create Employee</string>
+    <string name="add_employee">Добавление работника</string>
+    <string name="employee_add_name">Введите имя</string>
+    <string name="employee_add_salary">Введите зарплату</string>
+    <string name="employee_add_age">"Введите возраст "</string>
+    <string name="delete_employee_from_our_company">Удаление работника!</string>
+    <string name="delete_employee_from_this_company">Вы уверены, что хотите удалить этого работника из нашей компании?</string>
+</resources>
