@@ -1,4 +1,4 @@
-package com.example.listofemployees.presentation
+package com.example.listofemployees.presentation.main
 
 import android.annotation.SuppressLint
 import android.content.Context
@@ -38,8 +38,8 @@ class MainPresenter(private val context: Context) : MvpPresenter<MainView>() {
 
                     }
 
-                    override fun onSuccess(t: EmployeesResponse) {
-                        val employeeList: List<Employee> = t.employees
+                    override fun onSuccess(employeesResponse: EmployeesResponse) {
+                        val employeeList: List<Employee> = employeesResponse.employees
                         //  repository.deleteAllRows()
                         for (employee in employeeList) {
                             // repository.insertEmployee(employee)

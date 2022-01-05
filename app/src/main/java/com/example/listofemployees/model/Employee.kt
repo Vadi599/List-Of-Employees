@@ -11,7 +11,7 @@ data class Employee(
     @SerializedName("employee_salary")
     val employeeSalary: Int,
     @SerializedName("id")
-    val id: Int,
+    val id: Long,
     @SerializedName("profile_image")
     val profileImage: String
 )

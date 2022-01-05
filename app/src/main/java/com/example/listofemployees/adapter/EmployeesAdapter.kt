@@ -7,7 +7,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.listofemployees.databinding.ListItemEmployeeBinding
 import com.example.listofemployees.model.Employee
 
-class EmployeesAdapter(private var employeeList: List<Employee?>) :
+class EmployeesAdapter(
+    private var employeeList: List<Employee?>,
+    private val onEmployeeClick: (Employee?) -> Unit
+) :
     RecyclerView.Adapter<EmployeesAdapter.EmployeesViewHolder>() {
 
     override fun onCreateViewHolder(
@@ -38,9 +41,12 @@ class EmployeesAdapter(private var employeeList: List<Employee?>) :
     }
 
     override fun onBindViewHolder(holder: EmployeesViewHolder, position: Int) {
-        holder.name.text = employeeList[position]?.employeeName
-        holder.salary.text = employeeList[position]?.employeeSalary.toString()
-        holder.age.text = employeeList[position]?.employeeAge.toString()
+        val employee: Employee? = employeeList[position]
+        holder.name.text = employee?.employeeName
+        holder.salary.text = employee?.employeeSalary.toString()
+        holder.age.text = employee?.employeeAge.toString()
+        holder.itemView.setOnClickListener {
+            onEmployeeClick.invoke(employee)
+        }
     }
-
 }

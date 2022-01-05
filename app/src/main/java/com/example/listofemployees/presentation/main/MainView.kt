@@ -1,4 +1,4 @@
-package com.example.listofemployees.presentation
+package com.example.listofemployees.presentation.main
 
 import com.example.listofemployees.model.Employee
 import moxy.MvpView
@@ -10,8 +10,6 @@ import moxy.viewstate.strategy.StateStrategyType
 interface MainView : MvpView {
 
     fun showEmployees(employees: List<Employee?>)
-
-    fun showConcreteEmployee(employee: Employee?)
 
     fun showMessage(message: String?)
 

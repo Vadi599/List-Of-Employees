@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:background="@color/white"
+    android:clickable="true">
 
     <ProgressBar
         android:id="@+id/progressView"
@@ -42,7 +43,7 @@
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:srcCompat="@drawable/ic_name" />
+                android:src="@drawable/ic_name" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -72,7 +73,7 @@
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:srcCompat="@drawable/ic_salary" />
+                android:src="@drawable/ic_salary" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -104,7 +105,7 @@
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:srcCompat="@drawable/ic_age" />
+                android:src="@drawable/ic_age" />
 
             <TextView
                 android:layout_width="wrap_content"

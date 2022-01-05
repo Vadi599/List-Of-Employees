@@ -4,7 +4,7 @@ import com.google.gson.annotations.SerializedName
 
 data class EmployeeResponse(
     @SerializedName("data")
-    val employees: Employee,
+    val employee: Employee,
     @SerializedName("status")
     val status: String
 )
