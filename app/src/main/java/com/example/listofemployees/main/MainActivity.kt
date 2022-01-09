@@ -2,13 +2,15 @@ package com.example.listofemployees.main
 
 import android.os.Bundle
 import android.view.Menu
+import android.view.MenuItem
 import android.widget.Toast
 import androidx.core.view.isVisible
 import com.example.listofemployees.R
 import com.example.listofemployees.adapter.EmployeesAdapter
 import com.example.listofemployees.databinding.ActivityMainBinding
-import com.example.listofemployees.fragments.DetailEmployeeFragment
-import com.example.listofemployees.model.Employee
+import com.example.listofemployees.fragments.detail_employee.DetailEmployeeFragment
+import com.example.listofemployees.fragments.our_company.OurCompanyFragment
+import com.example.listofemployees.room.entity.Employee
 import com.example.listofemployees.presentation.main.MainPresenter
 import com.example.listofemployees.presentation.main.MainView
 import moxy.MvpAppCompatActivity
@@ -35,10 +37,9 @@ class MainActivity : MvpAppCompatActivity(), MainView {
         employeeList = ArrayList()
         binding.rvEmployees.adapter = employeesAdapter
         presenter.getDataFromServer()
-
     }
 
-    override fun showEmployees(employees: List<Employee?>) {
+    override fun showEmployees(employees: List<Employee?>?) {
         employeesAdapter.setEmployeesList(employees)
         showLoading(false)
     }
@@ -47,6 +48,20 @@ class MainActivity : MvpAppCompatActivity(), MainView {
         menuInflater.inflate(R.menu.menu_main, menu)
         menu.findItem(R.id.action_create_employee).isVisible = false
         return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.action_show_company -> {
+                val fragment = OurCompanyFragment()
+                supportFragmentManager.beginTransaction()
+                    .add(R.id.container, fragment)
+                    .addToBackStack(null)
+                    .commit()
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
     }
 
     override fun showMessage(message: String?) {

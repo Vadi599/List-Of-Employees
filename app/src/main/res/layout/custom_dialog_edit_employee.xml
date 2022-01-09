@@ -10,7 +10,7 @@
         android:id="@+id/tvTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="34sp"
+        android:textSize="18sp"
         android:textStyle="italic"
         tools:text="Title" />
 
@@ -24,7 +24,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/employee_name"
-            android:textSize="24sp"
+            android:textSize="16sp"
             android:textStyle="italic" />
 
         <EditText
@@ -33,7 +33,7 @@
             android:layout_height="wrap_content"
             android:hint="@string/enter_the_new_name"
             android:textColor="@color/purple_700"
-            android:textSize="18sp" />
+            android:textSize="14sp" />
 
     </LinearLayout>
 
@@ -47,7 +47,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/employee_salary"
-            android:textSize="24sp"
+            android:textSize="16sp"
             android:textStyle="italic" />
 
         <EditText
@@ -56,7 +56,7 @@
             android:layout_height="wrap_content"
             android:hint="@string/enter_the_new_salary"
             android:textColor="@color/purple_700"
-            android:textSize="18sp" />
+            android:textSize="14sp" />
 
     </LinearLayout>
 
@@ -70,7 +70,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/employee_age"
-            android:textSize="24sp"
+            android:textSize="16sp"
             android:textStyle="italic" />
 
         <EditText
@@ -79,7 +79,7 @@
             android:layout_height="wrap_content"
             android:hint="@string/enter_the_new_age"
             android:textColor="@color/purple_700"
-            android:textSize="18sp" />
+            android:textSize="14sp" />
 
     </LinearLayout>
 

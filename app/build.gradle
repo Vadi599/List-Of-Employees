@@ -23,6 +23,12 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
+    kapt {
+        arguments {
+            arg("room.schemaLocation", "$projectDir/schemas")
+        }
+    }
+
     buildTypes {
         release {
             minifyEnabled false
@@ -77,4 +83,7 @@ dependencies {
     implementation 'com.github.moxy-community:moxy-compiler:2.2.1'
     implementation 'com.github.moxy-community:moxy-androidx:2.2.1'
     implementation 'com.github.moxy-community:moxy-ktx:2.2.1'
+
+    implementation "androidx.room:room-runtime:$room_version"
+    kapt "androidx.room:room-compiler:$room_version"
 }

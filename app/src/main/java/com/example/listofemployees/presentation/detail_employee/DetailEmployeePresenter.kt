@@ -3,9 +3,10 @@ package com.example.listofemployees.presentation.detail_employee
 import android.annotation.SuppressLint
 import android.content.Context
 import android.net.ConnectivityManager
-import com.example.listofemployees.model.Employee
+import com.example.listofemployees.room.entity.Employee
 import com.example.listofemployees.model.EmployeeResponse
 import com.example.listofemployees.network.AppApiClient
+import com.example.listofemployees.presentation.main.MainPresenter
 import io.reactivex.SingleObserver
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
@@ -18,6 +19,8 @@ import moxy.MvpPresenter
 class DetailEmployeePresenter(private val context: Context) : MvpPresenter<DetailEmployeeView>() {
 
     private val appApiClient = AppApiClient
+
+    val mainPresenter = MainPresenter(context)
 
     @SuppressLint("MissingPermission")
     private fun isNetworkAvailable(): Boolean {
@@ -41,12 +44,8 @@ class DetailEmployeePresenter(private val context: Context) : MvpPresenter<Detai
                     }
 
                     override fun onSuccess(employeeResponse: EmployeeResponse) {
-                        if (employeeResponse != null) {
-                            obtainedEmployee = employeeResponse.employee
-                            viewState.showEmployeeProfile(obtainedEmployee)
-                        } else {
-                            viewState.showMessage("Ошибка! Пользователь не найден.")
-                        }
+                        obtainedEmployee = employeeResponse.employee
+                        viewState.showEmployeeProfile(obtainedEmployee)
                     }
 
                     override fun onError(e: Throwable) {
@@ -55,39 +54,16 @@ class DetailEmployeePresenter(private val context: Context) : MvpPresenter<Detai
                     }
                 })
         } else {
-            viewState.showMessage("Нет интернета!")
+            getEmployeeDataFromDatabase(id)
         }
     }
 
-    /*fun getEmployeeDataFromDatabase(id: Long) {
-        val employee: Employee = allWorkersRepository.getEmployee(id)
+    private fun getEmployeeDataFromDatabase(id: Long) {
+        val employee: Employee? = mainPresenter.employeesDao.findEmployeeById(id)
         if (employee == null) {
             viewState.showMessage("Пользователь не найден. ID = $id")
         } else {
             viewState.showEmployeeProfile(employee)
         }
-    }*/
-
-    /*fun addToCompanyEmployee() {
-        if (obtainedEmployee != null) {
-            ourCompanyRepository.insertEmployee(obtainedEmployee)
-            viewState.showSuccessfulAddedToCompany()
-            viewState.showButtonsState(true)
-        }
-    }*/
-
-    /*fun deleteFromCompanyEmployee() {
-        if (obtainedEmployee != null) {
-            ourCompanyRepository.deleteConcreteEmployee(obtainedEmployee.getId())
-            viewState.showSuccessfulDeletedFromCompany()
-            viewState.showButtonsState(false)
-        }
-    }*/
-
-    /*fun checkUserExistInOurCompany(employee: Employee) {
-        val employeeFromDatabase: Employee = ourCompanyRepository.getEmployee(employee.id)
-        val isExistUserInOurCompany = employeeFromDatabase != null
-        viewState.showButtonsState(isExistUserInOurCompany)
-    }*/
-
+    }
 }

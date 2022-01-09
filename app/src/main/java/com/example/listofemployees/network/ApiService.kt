@@ -1,10 +1,8 @@
 package com.example.listofemployees.network
 
-import com.example.listofemployees.model.EmployeeDeleteResponse
 import com.example.listofemployees.model.EmployeeResponse
 import com.example.listofemployees.model.EmployeesResponse
 import io.reactivex.Single
-import retrofit2.http.DELETE
 import retrofit2.http.GET
 import retrofit2.http.Path
 
@@ -18,6 +16,4 @@ interface ApiService {
         @Path("id") id: Long
     ): Single<EmployeeResponse?>
 
-    @DELETE("delete/{id}")
-    fun deleteEmployee(@Path("id") id: Long): Single<EmployeeDeleteResponse?>
 }

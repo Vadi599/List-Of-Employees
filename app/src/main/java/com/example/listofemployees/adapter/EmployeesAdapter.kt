@@ -5,10 +5,10 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.listofemployees.databinding.ListItemEmployeeBinding
-import com.example.listofemployees.model.Employee
+import com.example.listofemployees.room.entity.Employee
 
 class EmployeesAdapter(
-    private var employeeList: List<Employee?>,
+    private var employeeList: List<Employee?>?,
     private val onEmployeeClick: (Employee?) -> Unit
 ) :
     RecyclerView.Adapter<EmployeesAdapter.EmployeesViewHolder>() {
@@ -24,7 +24,7 @@ class EmployeesAdapter(
         )
     }
 
-    fun setEmployeesList(employeeList: List<Employee?>) {
+    fun setEmployeesList(employeeList: List<Employee?>?) {
         this.employeeList = employeeList
         notifyDataSetChanged()
     }
@@ -37,11 +37,11 @@ class EmployeesAdapter(
     }
 
     override fun getItemCount(): Int {
-        return employeeList.size
+        return employeeList!!.size
     }
 
     override fun onBindViewHolder(holder: EmployeesViewHolder, position: Int) {
-        val employee: Employee? = employeeList[position]
+        val employee: Employee? = employeeList?.get(position)
         holder.name.text = employee?.employeeName
         holder.salary.text = employee?.employeeSalary.toString()
         holder.age.text = employee?.employeeAge.toString()

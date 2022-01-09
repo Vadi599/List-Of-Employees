@@ -3,9 +3,11 @@ package com.example.listofemployees.presentation.main
 import android.annotation.SuppressLint
 import android.content.Context
 import android.net.ConnectivityManager
-import com.example.listofemployees.model.Employee
+import androidx.room.Room
+import com.example.listofemployees.room.entity.Employee
 import com.example.listofemployees.model.EmployeesResponse
 import com.example.listofemployees.network.AppApiClient
+import com.example.listofemployees.room.AppDatabase
 import io.reactivex.SingleObserver
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
@@ -18,6 +20,23 @@ import moxy.MvpPresenter
 class MainPresenter(private val context: Context) : MvpPresenter<MainView>() {
 
     private val appApiClient = AppApiClient
+
+    private val db = Room.databaseBuilder(
+        context,
+        AppDatabase::class.java, "list-of-employees"
+    ).allowMainThreadQueries().build()
+
+    val employeesDao = db.getEmployeesDao()
+
+    private fun getDataFromDatabase() {
+        val employees: List<Employee?>? =
+            employeesDao.getAllEmployees()
+        if (employees?.size == 0) {
+            viewState.showMessage("Нет данных в БД. Включите интернет и перезапустите приложение")
+        } else {
+            viewState.showEmployees(employees)
+        }
+    }
 
     @SuppressLint("MissingPermission")
     private fun isNetworkAvailable(): Boolean {
@@ -40,20 +59,20 @@ class MainPresenter(private val context: Context) : MvpPresenter<MainView>() {
 
                     override fun onSuccess(employeesResponse: EmployeesResponse) {
                         val employeeList: List<Employee> = employeesResponse.employees
-                        //  repository.deleteAllRows()
                         for (employee in employeeList) {
-                            // repository.insertEmployee(employee)
+                            employeesDao.insertEmployee(employee)
                         }
                         viewState.showEmployees(employeeList)
                     }
 
                     override fun onError(e: Throwable) {
-                        viewState.showMessage(e.message)
+                        viewState.showMessage("Ошибка!Работники не найдены!" + e.message)
                         viewState.showLoading(false)
                     }
                 })
         } else {
-            viewState.showMessage("Нет интернета!")
+            viewState.showMessage("Нет интернета!Берем данные из БД")
+            getDataFromDatabase()
         }
     }
 }

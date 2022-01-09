@@ -127,19 +127,6 @@
 
         </LinearLayout>
 
-        <Button
-            android:id="@+id/btnAddToOurCompany"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/add_to_company"
-            android:visibility="gone" />
-
-        <Button
-            android:id="@+id/btnDeleteToOurCompany"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/delete_from_company"
-            android:visibility="gone" />
-
     </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
